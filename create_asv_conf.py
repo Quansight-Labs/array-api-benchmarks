@@ -2,8 +2,6 @@
 
 import json
 import os
-import subprocess
-import sys
 
 ARRAY_API_MODULE = os.getenv("ARRAY_API_TESTS_MODULE")
 REQUIREMENTS = os.getenv("ARRAY_API_BENCH_REQS")
@@ -48,12 +46,7 @@ def main() -> None:
     with open("asv.conf.json", "w") as f:
         json.dump(conf, f, indent=4)
 
-    subprocess.check_call(
-        ["asv", "run", *sys.argv[1:]],
-        stdin=sys.stdin,
-        stdout=sys.stdout,
-        stderr=sys.stderr,
-    )
+    print("`asv.conf.json` successfully created.")
 
 
 if __name__ == "__main__":
