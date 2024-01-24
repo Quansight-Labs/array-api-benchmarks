@@ -2,6 +2,7 @@
 
 import json
 import os
+import pathlib
 
 ARRAY_API_MODULE = os.getenv("ARRAY_API_TESTS_MODULE")
 REQUIREMENTS = os.getenv("ARRAY_API_BENCH_REQS")
@@ -43,7 +44,7 @@ def main() -> None:
             }
         )
 
-    with open("asv.conf.json", "w") as f:
+    with pathlib.Path("asv.conf.json").open("w") as f:
         json.dump(conf, f, indent=4)
 
     print("`asv.conf.json` successfully created.")
