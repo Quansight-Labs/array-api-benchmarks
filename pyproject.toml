@@ -1,6 +1,6 @@
 [tool.ruff]
 select = ["F", "E", "W", "C90", "I", "N", "B", "UP", "YTT", "S", "BLE", "FBT", "B", "A", "C4", "T10", "EXE", "G", "ISC", "ICN", "PIE", "PYI", "INP", "Q", "RSE", "RET", "SIM", "PGH", "FLY", "PERF", "RSE102", "SLF", "SLOT", "TCH", "PTH", "TD", "FIX", "ERA", "PL", "RUF"]
-ignore = ["D211", "D212", "RUF012"]
+ignore = ["D211", "D212", "RUF012", "B018"]
 line-length = 88
 
 [tool.ruff.format]

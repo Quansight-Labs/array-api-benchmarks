@@ -5,7 +5,7 @@ from . import xp
 
 class CreationSuite1D:
     params = (
-        [0, 1, 2**10, 2**20],
+        [0, 1, 2**16, 2**24],
         [xp.bool, xp.int8, xp.int16, xp.float32, xp.float64, xp.complex128],
     )
     param_names = ["n_elements", "dtype"]
@@ -14,8 +14,8 @@ class CreationSuite1D:
         self.l = [0] * n_elements
 
     def time_arange(self, n_elements, dtype):
-        if dtype == xp.bool:
-            raise SkipNotImplemented("`xp.arange` not implemented for `dtype=xp.bool`.")
+        if not xp.isdtype(dtype, "numeric"):
+            raise SkipNotImplemented("`xp.arange` only implemented for numeric dtypes.")
         xp.arange(n_elements, dtype=dtype)
 
     def time_asarray(self, n_elements, dtype):
@@ -33,7 +33,7 @@ class CreationSuite1D:
 
 class CreationSuite2D:
     params = (
-        [0, 1, 2**8, 2**10],
+        [0, 1, 2**8, 2**12],
         [xp.bool, xp.int8, xp.int16, xp.float32, xp.float64, xp.complex128],
     )
     param_names = ["side_len", "dtype"]
