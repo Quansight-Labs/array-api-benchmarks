@@ -71,10 +71,10 @@ class ElemwiseUnarySuite:
 class ElemwiseBinarySuite:
     params = (
         [
-            (0, 0),
-            (1, 1),
-            ((2**8,) * 2, 2**8),
-            ((2**12,) * 2, 2**12),
+            ((0,), (0,)),
+            ((1,), (1,)),
+            ((2**8,) * 2, (2**8,)),
+            ((2**12,) * 2, (2**12,)),
             ((2**12,) * 2,) * 2,
         ],
         [
@@ -89,8 +89,47 @@ class ElemwiseBinarySuite:
 
     def setup(self, shapes, dtypes):
         self.arrs = []
+        self.scratch = []
         for sh, dt in zip(shapes, dtypes):
             self.arrs.append(xp.ones(sh, dtype=dt))
+            self.scratch.append(xp.zeros(sh, dtype=dt))
 
     def time_add(self, shapes, dtypes):
+        if not all(xp.isdtype(dt, "numeric") for dt in dtypes):
+            raise SkipNotImplemented(
+                "`operator.add` only implemented for numeric dtypes."
+            )
         self.arrs[0] + self.arrs[1]
+
+    def time_iadd(self, shapes, dtypes):
+        if not all(xp.isdtype(dt, "numeric") for dt in dtypes):
+            raise SkipNotImplemented(
+                "`operator.iadd` only implemented for numeric dtypes."
+            )
+        self.scratch[0] += self.arrs[0]
+
+    def time_xor(self, shapes, dtypes):
+        if not all(xp.isdtype(dt, ("integral", "bool")) for dt in dtypes):
+            raise SkipNotImplemented(
+                "`operator.xor` only implemented for integral and bool dtypes."
+            )
+        self.arrs[0] ^ self.arrs[1]
+
+    def time_ixor(self, shapes, dtypes):
+        if not all(xp.isdtype(dt, ("integral", "bool")) for dt in dtypes):
+            raise SkipNotImplemented(
+                "`operator.ixor` only implemented for integral and bool dtypes."
+            )
+        self.scratch[0] ^= self.arrs[0]
+
+    def time_le(self, shapes, dtypes):
+        if not all(xp.isdtype(dt, ("integral", "real floating")) for dt in dtypes):
+            raise SkipNotImplemented(
+                "`operator.le` only implemented for numeric dtypes."
+            )
+        self.arrs[0] <= self.arrs[1]
+
+    def time_atan2(self, shapes, dtypes):
+        if not all(xp.isdtype(dt, "real floating") for dt in dtypes):
+            raise SkipNotImplemented("`xp.atan2` only implemented for numeric dtypes.")
+        xp.atan2(self.arrs[0], self.arrs[1])
