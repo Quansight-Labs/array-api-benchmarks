@@ -1,0 +1,8 @@
+name: bench
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - pip
+  - pip:
+    - asv

@@ -1,0 +1,53 @@
+jobs:
+    test:
+      defaults:
+        run:
+          shell: bash -el {0}
+      strategy:
+        matrix:
+          os: [ubuntu-latest]
+          python: ['3.11']
+        fail-fast: false
+      runs-on: ${{ matrix.os }}
+      env:
+        PYTHON_VERSION: ${{ matrix.python }}
+      steps:
+        - name: Checkout Repo
+          uses: actions/checkout@v3
+        - name: Cache conda
+          uses: actions/cache@v3
+          env:
+            # Increase this value to reset cache if ci/environment.yml has not changed
+            CACHE_NUMBER: 0
+          with:
+            path: |
+              ~/conda_pkgs_dir
+              ./env
+            key:
+              test-${{ matrix.os }}-conda-py${{ matrix.python }}-${{ env.CACHE_NUMBER }}-${{
+              hashFiles('ci/environment.yml', 'asv.conf.example.json') }}
+        - uses: conda-incubator/setup-miniconda@v3
+          with:
+            activate-environment: bench
+            allow-softlinks: true
+            environment-file: ci/environment.yml
+            python-version: ${{ matrix.python }}
+            channels: conda-forge
+            channel-priority: strict
+            miniforge-version: latest
+            use-only-tar-bz2: true
+            use-mamba: true
+        - name: Run benchmarks
+          run: |
+            cp asv.conf.example.json asv.conf.json
+            asv machine --yes
+            asv run --quick --dry-run -vvv
+on:
+    # Trigger the workflow on push or pull request,
+    # but only for the main branch
+    push:
+      branches:
+        - main
+    pull_request:
+      branches:
+        - main
