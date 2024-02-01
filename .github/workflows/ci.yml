@@ -39,7 +39,7 @@ jobs:
             use-mamba: true
         - name: Run benchmarks
           run: |
-            cp asv.conf.example.json asv.conf.json
+            python create_asv_conf.py
             asv machine --yes
             asv run --quick --dry-run -vvv
 on:
