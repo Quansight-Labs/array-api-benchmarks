@@ -9,6 +9,7 @@ class LinearAlgebraSuiteBinary:
             ((0,), (0,)),
             ((1,), (1,)),
             ((2**8,) * 2, (2**8,)),
+            ((2**8,) * 3, (2**8,)),
             ((2**12,) * 2, (2**12,)),
         ],
         [
@@ -36,7 +37,15 @@ class LinearAlgebraSuiteBinary:
 
 class LinearAlgebraSuiteUnary:
     params = (
-        [(1, 1), (2**8, 1), (1, 2**8), (2**8,) * 2, (2**12, 1), (1, 2**12)],
+        [
+            (1, 1),
+            (2**8, 1),
+            (1, 2**8),
+            (2**8,) * 2,
+            (2**8,) * 3,
+            (2**12, 1),
+            (1, 2**12),
+        ],
         [xp.float32, xp.float64, xp.complex128],
     )
     param_names = ["shape", "dtype"]
