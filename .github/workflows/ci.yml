@@ -1,4 +1,3 @@
-on: [push, pull_request]
 jobs:
     test:
       defaults:
@@ -40,6 +39,15 @@ jobs:
             use-mamba: true
         - name: Run benchmarks
           run: |
-            python create_asv_conf.py
+            cp asv.conf.example.json asv.conf.json
             asv machine --yes
             asv run --quick --dry-run -vvv
+on:
+    # Trigger the workflow on push or pull request,
+    # but only for the main branch
+    push:
+      branches:
+        - main
+    pull_request:
+      branches:
+        - main
