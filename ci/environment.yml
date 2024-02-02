@@ -4,4 +4,4 @@ channels:
 dependencies:
   - python
   - pip
-  - asv
+  - asv>=0.6.1
