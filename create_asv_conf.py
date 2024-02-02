@@ -20,7 +20,7 @@ def main() -> None:
 
     conf = {
         "version": 1,
-        "project": "array-api-benchmark",
+        "project": "array-api-benchmarks",
         "project_url": "https://data-apis.org/array-api",
         "repo": PROJECT_REPO,
         "matrix": {"req": {}, "env": {}, "env_nobuild": {}},
