@@ -33,10 +33,7 @@ jobs:
             environment-file: ci/environment.yml
             python-version: ${{ matrix.python }}
             channels: conda-forge
-            channel-priority: strict
             miniforge-version: latest
-            use-only-tar-bz2: true
-            use-mamba: true
         - name: Run benchmarks
           run: |
             cp asv.conf.example.json asv.conf.json
