@@ -39,7 +39,6 @@ jobs:
             use-mamba: true
         - name: Run benchmarks
           run: |
-            mamba clean -ay && mamba update --all
             cp asv.conf.example.json asv.conf.json
             asv machine --yes
             asv run --quick --dry-run -vvv
