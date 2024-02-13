@@ -5,7 +5,7 @@ from . import xp
 
 class ElemwiseUnarySuite:
     params = (
-        [0, 1, (2**8,) * 2, (2**12,) * 2],
+        [0, 1, (2**8,) * 2, (2**10,) * 2],
         [xp.bool, xp.int8, xp.int16, xp.float32, xp.float64, xp.complex128],
     )
     param_names = ["shape", "dtype"]
@@ -74,8 +74,8 @@ class ElemwiseBinarySuite:
             ((0,), (0,)),
             ((1,), (1,)),
             ((2**8,) * 2, (2**8,)),
-            ((2**12,) * 2, (2**12,)),
-            ((2**12,) * 2,) * 2,
+            ((2**10,) * 2, (2**10,)),
+            ((2**10,) * 2,) * 2,
         ],
         [
             (xp.bool, xp.bool),

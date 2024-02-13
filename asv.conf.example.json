@@ -1,32 +1,34 @@
 {
-    "version": 1,
-    "project": "array-api-benchmarks",
-    "project_url": "https://data-apis.org/array-api",
-    "repo": ".",
-    "branches": ["main"],
-    "matrix": {
-        "req": {},
-        "env": {},
-        "env_nobuild": {}
-    },
-    "environment_type": "conda",
-    "include": [
-        {
-            "python": "3.11",
-            "req": {
-                "array-api-strict": ""
-            },
-            "env_nobuild": {
-                "ARRAY_API_TESTS_MODULE": "array_api_strict"
-            }
-        }
-    ],
-    "exclude": [
-        {
-            "python": "3.11"
-        }
-    ],
-    "build_command": [],
-    "install_command": [],
-    "uninstall_command": []
+  "branches": [
+    "main"
+  ],
+  "build_command": [],
+  "environment_type": "conda",
+  "exclude": [
+    {
+      "python": "3.11"
+    }
+  ],
+  "include": [
+    {
+      "env_nobuild": {
+        "ARRAY_API_TESTS_MODULE": "array_api_strict"
+      },
+      "python": "3.11",
+      "req": {
+        "array-api-strict": ""
+      }
+    }
+  ],
+  "install_command": [],
+  "matrix": {
+    "env": {},
+    "env_nobuild": {},
+    "req": {}
+  },
+  "project": "array-api-benchmarks",
+  "project_url": "https://data-apis.org/array-api",
+  "repo": ".",
+  "uninstall_command": [],
+  "version": 1
 }

@@ -5,7 +5,7 @@ from . import xp
 
 class CreationSuite1D:
     params = (
-        [0, 1, 2**16, 2**24],
+        [0, 1, 2**16, 2**20],
         [xp.bool, xp.int8, xp.int16, xp.float32, xp.float64, xp.complex128],
     )
     param_names = ["n_elements", "dtype"]
@@ -33,7 +33,7 @@ class CreationSuite1D:
 
 class CreationSuite2D:
     params = (
-        [0, 1, 2**8, 2**12],
+        [0, 1, 2**8, 2**10],
         [xp.bool, xp.int8, xp.int16, xp.float32, xp.float64, xp.complex128],
     )
     param_names = ["side_len", "dtype"]

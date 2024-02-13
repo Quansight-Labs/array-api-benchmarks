@@ -3,7 +3,7 @@ from . import xp
 
 class IndexingSuite1D:
     params = [
-        [(1,), (2**8,), (2**12,)],
+        [(1,), (2**8,), (2**16,), (2**20,)],
         [xp.bool, xp.int8, xp.int16, xp.float32, xp.float64, xp.complex128],
     ]
     param_names = ["shape", "dtype"]
@@ -25,7 +25,7 @@ class IndexingSuite1D:
 
 class IndexingSuite2D:
     params = [
-        [(1, 1), (2**8,) * 2, (2**12,) * 2],
+        [(1, 1), (2**8,) * 2, (2**10,) * 2],
         [xp.bool, xp.int8, xp.int16, xp.float32, xp.float64, xp.complex128],
     ]
     param_names = ["shape", "dtype"]
@@ -59,7 +59,7 @@ class IndexingSuite2D:
 
 class IndexingSuite3D:
     params = [
-        [(1, 1, 1), (2**8,) * 3],
+        [(1, 1, 1), (2**7,) * 3],
         [xp.bool, xp.int8, xp.int16, xp.float32, xp.float64, xp.complex128],
     ]
     param_names = ["shape", "dtype"]
